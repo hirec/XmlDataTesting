@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<rss version="2.0" xmlns:yweather="http://xml.weather.yahoo.com/ns/rss/1.0" xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#">
+<channel>		
+<title>Yahoo! Weather - Defiance, OH</title>
+<link>http://us.rd.yahoo.com/dailynews/rss/weather/Defiance__OH/*http://weather.yahoo.com/forecast/USOH0251_f.html</link>
+<description>Yahoo! Weather for Defiance, OH</description>
+<language>en-us</language>
+<lastBuildDate>Thu, 19 Sep 2013 6:51 pm EDT</lastBuildDate>
+<ttl>60</ttl>
+<yweather:location city="Defiance" region="OH"   country="United States"/>
+<yweather:units temperature="F" distance="mi" pressure="in" speed="mph"/>
+<yweather:wind chill="70"   direction="190"   speed="3" />
+<yweather:atmosphere humidity="87"  visibility="10"  pressure="29.96"  rising="0" />
+<yweather:astronomy sunrise="7:20 am"   sunset="7:38 pm"/>
+<image>
+<title>Yahoo! Weather</title>
+<width>142</width>
+<height>18</height>
+<link>http://weather.yahoo.com</link>
+<url>http://l.yimg.com/a/i/brand/purplelogo//uh/us/news-wea.gif</url>
+</image>
+<item>
+<title>Conditions for Defiance, OH at 6:51 pm EDT</title>
+<geo:lat>41.29</geo:lat>
+<geo:long>-84.36</geo:long>
+<link>http://us.rd.yahoo.com/dailynews/rss/weather/Defiance__OH/*http://weather.yahoo.com/forecast/USOH0251_f.html</link>
+<pubDate>Thu, 19 Sep 2013 6:51 pm EDT</pubDate>
+<yweather:condition  text="Fair"  code="34"  temp="70"  date="Thu, 19 Sep 2013 6:51 pm EDT" />
+<description><![CDATA[
+<img src="http://l.yimg.com/a/i/us/we/52/34.gif"/><br />
+<b>Current Conditions:</b><br />
+Fair, 70 F<BR />
+<BR /><b>Forecast:</b><BR />
+Thu - Thunderstorms Late. High: 83 Low: 68<br />
+Fri - Thunderstorms. High: 82 Low: 58<br />
+Sat - Partly Cloudy. High: 72 Low: 44<br />
+Sun - Partly Cloudy. High: 66 Low: 43<br />
+Mon - Sunny. High: 69 Low: 47<br />
+<br />
+<a href="http://us.rd.yahoo.com/dailynews/rss/weather/Defiance__OH/*http://weather.yahoo.com/forecast/USOH0251_f.html">Full Forecast at Yahoo! Weather</a><BR/><BR/>
+(provided by <a href="http://www.weather.com" >The Weather Channel</a>)<br/>
+]]></description>
+<yweather:forecast day="Thu" date="19 Sep 2013" low="68" high="83" text="Thunderstorms Late" code="4" />
+<yweather:forecast day="Fri" date="20 Sep 2013" low="58" high="82" text="Thunderstorms" code="4" />
+<yweather:forecast day="Sat" date="21 Sep 2013" low="44" high="72" text="Partly Cloudy" code="30" />
+<yweather:forecast day="Sun" date="22 Sep 2013" low="43" high="66" text="Partly Cloudy" code="30" />
+<yweather:forecast day="Mon" date="23 Sep 2013" low="47" high="69" text="Sunny" code="32" />
+<guid isPermaLink="false">USOH0251_2013_09_23_7_00_EDT</guid>
+</item>
+</channel>
+</rss>
+
