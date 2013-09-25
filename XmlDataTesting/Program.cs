@@ -14,8 +14,16 @@ namespace XmlDataTesting
     {
 
       LinqQuery linqQuery = new LinqQuery();
-      var queryResults = linqQuery.QueryData(Directory.GetCurrentDirectory() + "\\SampleData\\netflixStreamingCatalogSampleData.xml", "catalog_title", "title", "short");
-      Console.WriteLine(queryResults);
+
+      //Returns a single or a few attributes
+      var queryResults = linqQuery.QueryData(Directory.GetCurrentDirectory() + "\\SampleData\\netflixStreamingCatalogSampleData.xml", "catalog_title", "category", "label", true);
+
+      //Returns the entire element
+     // var queryResults = linqQuery.QueryData(Directory.GetCurrentDirectory() + "\\SampleData\\netflixStreamingCatalogSampleData.xml", "catalog_title", "id", "744645", true);
+
+      //By converting IEnumerable ToList() you have to call a specific index vs leaving as IEnumerable and getting 
+      //everything in generic collection without referring to index
+      Console.WriteLine(queryResults[0]);
       Console.ReadKey();
     }
   }

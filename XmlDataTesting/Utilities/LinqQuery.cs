@@ -1,44 +1,78 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
+using XmlDataTesting.Models;
 
 namespace XmlDataTesting.Utilities
 {
   public class LinqQuery
   {
-    static IEnumerable<XElement> StreamRootChildDoc(string uri, string rootElement)
+
+    static IEnumerable<XElement> SimpleStreamAxis(
+                       string inputUrl, string matchName)
     {
-      using (XmlReader reader = XmlReader.Create(uri))
-      {        
+      using (XmlReader reader = XmlReader.Create(inputUrl))
+      {
         reader.MoveToContent();
-        // Parse the file and display each of the nodes.
         while (reader.Read())
         {
           switch (reader.NodeType)
           {
             case XmlNodeType.Element:
-              if (reader.Name == rootElement)
+              if (reader.Name == matchName)
               {
-                XElement el = XElement.ReadFrom(reader) as XElement;
+                XElement el = XElement.ReadFrom(reader)
+                                      as XElement;
                 if (el != null)
                   yield return el;
               }
               break;
-            case XmlNodeType.CDATA:              
-              break;
           }
         }
+        reader.Close();
       }
     }
 
-    public object QueryData(string filePath, string rootElement, string queryElement, string queryAttribute)
+    public IEnumerable<string> QueryData(string filePath, string rootElement, string queryElement, string queryAttribute)
     {
-      IEnumerable<string> queriedData =
-              from el in StreamRootChildDoc(filePath, rootElement)
-              where (string)el.Attribute(queryElement) == queryElement
-              select (string)el.Element(queryAttribute);
-      return queriedData;
+      //SEARCHES THROUGH THE ROOT ELEMENTS WHERE THE ELEMENT CONTAINS A SEARCH TERMS
+      //AND RETURNS A SINGLE FIELD
+      //IEnumerable<string> titles =
+      //    from el in SimpleStreamAxis(filePath, rootElement)
+      //    where el.Element(queryElement).Value.Contains(queryAttribute)
+      //    select (string)el.Element(queryElement);
+
+      //SEARCHES THROUGH THE ROOT ELEMENTS WHERE THE ELEMENT ATTRIBUTE CONTAINS A SEARCH TERM 
+      //AND RETURNS A SINGLE FIELD RESTRICTED TO X RESULTS WITH TAKE()
+      IEnumerable<string> titles =
+          (from el in SimpleStreamAxis(filePath, rootElement)
+          where el.Element(queryElement).Attribute(queryAttribute).Value.Contains("Action & Adventure")
+          select (string)el.Element("id")).Take(2);
+     
+      foreach (string str in titles)
+      {
+        Console.WriteLine(str);
+      }
+      return titles;
+    }
+
+
+    public List<XElement> QueryData(string filePath, string rootElement, string queryElement, string queryAttribute, bool returnElement)
+    {          
+      //SEARCHES THROUGH THE ROOT ELEMENTS WHERE THE ELEMENT ATTRIBUTE CONTAINS A SEARCH TERM
+      //AND RETURNS THE ELEMENT
+      IEnumerable<XElement> titles =
+         (from el in SimpleStreamAxis(filePath, rootElement)
+         where el.Element(queryElement).Attribute(queryAttribute).Value.Contains("Dramas")
+         select el).Take(5);
+      List<XElement> movieTitles = titles.ToList();
+      //foreach (string str in titles)
+      //{
+     //   Console.WriteLine(str);
+     // }
+      return movieTitles;
     }
 
   }
