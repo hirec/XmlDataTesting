@@ -42,7 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Mappings\CategoryTitleMap.cs" />
+    <Compile Include="Mappings\WeatherMap.cs" />
     <Compile Include="Models\CategoryTitle.cs" />
+    <Compile Include="Models\WeatherData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\LinqQuery.cs" />

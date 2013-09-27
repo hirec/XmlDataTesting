@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
+﻿using System.Collections.Generic;
 using System.Xml.Linq;
 using XmlDataTesting.Models;
 
@@ -11,9 +6,12 @@ namespace XmlDataTesting.Mappings
 {
   public class CategoryTitleMap
   {
+    List<CategoryTitle> CTList;
     CategoryTitle CT;
-    public void MapObject(List<XElement> el)
-    {      
+
+    public List<CategoryTitle> MapObject(List<XElement> el)
+    {
+      CTList = new List<CategoryTitle>();
       foreach (var E in el.Elements())
       {
         switch (E.Name.LocalName)
@@ -37,9 +35,13 @@ namespace XmlDataTesting.Mappings
             break;
           case "average_rating":
             CT.AverageRating = E.Value;
-            break;   
+            break; 
+            case "updated":
+            CTList.Add(CT);
+            break;
         }        
       }
+      return CTList;
     }
 
     private void parseLink(XElement E)
@@ -49,12 +51,38 @@ namespace XmlDataTesting.Mappings
         case "box art":
           foreach (var b in E.Element("box_art").Descendants("link"))
           {
-            Console.WriteLine(b.Attribute("title").Value);
+            switch (b.Attribute("title").Value)
+            {
+              case "64pix width box art":
+                CT.SmallCoverArt = b.Attribute("title").Value;
+                break;
+              case "150pix width box art":
+                CT.MediumCoverArt = b.Attribute("title").Value;
+                break;
+              case "210pix width box art":
+                CT.LargeCoverArt = b.Attribute("title").Value;
+                break;
+            }
+          }
+          break;
+        case "cast":
+          foreach (var p in E.Element("people").Descendants("link"))
+          {
+            CT.Cast.Add(p.Attribute("title").Value);            
+          }
+          break;
+        case "directors":
+          foreach (var p in E.Element("people").Descendants("link"))
+          {
+            CT.Directors.Add(p.Attribute("title").Value);
           }
           break;
         case "synopsis":
-          Console.WriteLine(E.Element("synopsis").Value);
+          CT.Synopsis = E.Element("synopsis").Value;
           break;
+        case "short synopsis":
+          CT.ShortSynopsis = E.Element("short_synopsis").Value;
+          break;        
       }
     }
 
@@ -65,7 +93,5 @@ namespace XmlDataTesting.Mappings
       CT.Cast = new List<string>();
       CT.Directors = new List<string>();
     }
-
-   
   }
 }

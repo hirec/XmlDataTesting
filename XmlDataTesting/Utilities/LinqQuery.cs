@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
-using XmlDataTesting.Models;
 
 namespace XmlDataTesting.Utilities
 {
@@ -63,5 +61,16 @@ namespace XmlDataTesting.Utilities
       List<XElement> queryResults = queryResult.ToList();
       return queryResults;
     }
+
+    public List<XElement> QueryData(string docPath)
+    {
+      XDocument doc = XDocument.Load(docPath);
+      
+      IEnumerable<XElement> queryResult =
+        from el in doc.Elements()
+        select el;
+      List<XElement> queryResults = queryResult.ToList();
+      return queryResults;
+    }   
   }
 }
