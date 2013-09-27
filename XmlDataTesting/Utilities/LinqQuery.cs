@@ -64,8 +64,16 @@ namespace XmlDataTesting.Utilities
 
     public List<XElement> QueryData(string docPath)
     {
-      XDocument doc = XDocument.Load(docPath);
-      
+      XDocument doc = XDocument.Load(docPath);      
+      IEnumerable<XElement> queryResult =
+        from el in doc.Elements()
+        select el;
+      List<XElement> queryResults = queryResult.ToList();
+      return queryResults;
+    }
+
+    public List<XElement> QueryData(XDocument doc)
+    {
       IEnumerable<XElement> queryResult =
         from el in doc.Elements()
         select el;

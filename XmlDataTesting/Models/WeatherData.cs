@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace XmlDataTesting.Models
 {
   public class WeatherData
-  {   
-    public string PubDate { get; set; }
+  {  
     public string City { get; set; }
+    public string Region { get; set; }
     public string WindChill { get; set; }
     public string WindDirection { get; set; }
     public string WindSpeed { get; set; }
